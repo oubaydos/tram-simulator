@@ -29,14 +29,16 @@ def random_end_of_life_timestamp(subscription_type):
     :param subscription_type: Subscription type: Monthly, Daily, OneTime (hourly)
     :return: a valid/invalid random end of life timestamp that could be in the past/present/future
     """
-    min = datetime.datetime.now() - relativedelta(years=6)
+    min_time = datetime.datetime.now() - relativedelta(years=6)
     if subscription_type == Subscription.Month:
-        max = datetime.datetime.now() + relativedelta(months=1)
+        max_time = datetime.datetime.now() + relativedelta(months=1)
     elif subscription_type == Subscription.Day:
-        max = datetime.datetime.now() + relativedelta(days=1)
+        max_time = datetime.datetime.now() + relativedelta(days=1)
+    elif subscription_type == Subscription.Year:
+        max_time = datetime.datetime.now() + relativedelta(years=1)
     else:
-        max = datetime.datetime.now() + relativedelta(hours=1)
-    return random_date(min, max).isoformat()
+        max_time = datetime.datetime.now() + relativedelta(hours=1)
+    return random_date(min_time, max_time).isoformat()
 
 
 def generate_random_clients(number_of_clients: int) -> set:

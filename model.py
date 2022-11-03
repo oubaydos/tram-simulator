@@ -7,15 +7,22 @@ from data import clients
 
 
 # should not be enum or str
-class Lines(str, Enum):
-    A = []  # list of stations of line A
-    # ..
+# line = character(A,B..) + list of stations included
+class Line:
+    id: str = None
+    stations: list = []
+
+    def __init__(self, _id: str, stations: list):
+        assert len(_id) < 4
+        self.id = _id
+        self.stations = stations
 
 
 class Subscription(str, Enum):
     Month = "Month"
     Day = "Day"
-    Hour = "Hour"
+    OneTimeUse = "OneTimeUse"
+    Year = "Year"
 
     @staticmethod
     def random():
@@ -27,10 +34,10 @@ class Client:
     firstName: str = None
     lastName: str = None
 
-    def __init__(self, id: str, firstName: str, lastName: str) -> None:
-        self.id = id
-        self.firstName = firstName
-        self.lastName = lastName
+    def __init__(self, _id: str, firstname: str, lastname: str) -> None:
+        self.id = _id
+        self.firstName = firstname
+        self.lastName = lastname
 
     @staticmethod
     def random():
@@ -43,10 +50,10 @@ class Card:
     type: Subscription = None
     endOfValidityTimeStamp: str = None
 
-    def __init__(self, id: str, type: Subscription, endOfValidityTimeStamp: str):
-        self.id = id
-        self.type = type
-        self.endOfValidityTimeStamp = endOfValidityTimeStamp
+    def __init__(self, _id: str, subscription_type: Subscription, end_of_validity_timestamp: str):
+        self.id = _id
+        self.type = subscription_type
+        self.endOfValidityTimeStamp = end_of_validity_timestamp
 
     @staticmethod
     def random():
@@ -63,15 +70,15 @@ class Validation:
     destinationStationId: str = None
     requestTimeStamp: str = None
 
-    def __init__(self, client: Client, card: Card, stationId: str, line: str, destinationStationId: str,
-                 requestTimeStamp: str):
+    def __init__(self, client: Client, card: Card, station_id: str, line: str, destination_station_id: str,
+                 request_timestamp: str):
         self.client = client
         self.card = card
-        self.stationId = stationId
+        self.stationId = station_id
         self.line = line
-        self.destinationStationId = destinationStationId
-        self.requestTimeStamp = requestTimeStamp
+        self.destinationStationId = destination_station_id
+        self.requestTimeStamp = request_timestamp
 
-    def toJSON(self):
+    def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)

@@ -511,5 +511,7 @@ clients = [
 
 # print("[")
 # for i in range(len(first_names)):
-#     print('[' + '"' + uuid.uuid4().hex + '"' + "," + '"' + first_names[i] + '"' + "," + '"' + last_names[i] + '"' + "],")
+#     print(
+#         '[' +
+#         '"' + uuid.uuid4().hex + '"' + "," + '"' + first_names[i] + '"' + "," + '"' + last_names[i] + '"' + "],")
 # print("]")
