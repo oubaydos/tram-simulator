@@ -1,10 +1,17 @@
 import json
+from enum import Enum
+
+
+class Subscription(str, Enum):
+    Month = "Month"
+    Day = "Day"
+    Hour = "Hour"
 
 
 class Client:
-    id = None
-    firstName = None
-    lastName = None
+    id: str = None
+    firstName: str = None
+    lastName: str = None
 
     def __init__(self, id: str, firstName: str, lastName: str) -> None:
         self.id = id
@@ -13,23 +20,23 @@ class Client:
 
 
 class Card:
-    id = None
-    type = None
-    endOfValidityTimeStamp = None
+    id: str = None
+    type: Subscription = None
+    endOfValidityTimeStamp: str = None
 
-    def __init__(self, id: str, type: str, endOfValidityTimeStamp: str):
+    def __init__(self, id: str, type: Subscription, endOfValidityTimeStamp: str):
         self.id = id
         self.type = type
         self.endOfValidityTimeStamp = endOfValidityTimeStamp
 
 
 class Validation:
-    client = None
-    card = None
-    stationId = None
-    line = None
-    destinationStationId = None
-    requestTimeStamp = None
+    client: Client = None
+    card: Card = None
+    stationId: str = None
+    line: str = None
+    destinationStationId: str = None
+    requestTimeStamp: str = None
 
     def __init__(self, client: Client, card: Card, stationId: str, line: str, destinationStationId: str,
                  requestTimeStamp: str):

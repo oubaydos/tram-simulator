@@ -513,8 +513,7 @@ clients = [
     Client("7551ddb238de46bc9828db5df96cb771", "Melody", "Hollendonner"),
 ]
 
-print("[")
-for i in range(len(first_names)):
-    print('Client(' + '"' + uuid.uuid4().hex + '"' + "," + '"' + first_names[i] + '"' + "," + '"' + last_names[
-        i] + '"' + "),")
-print("]")
+# print("[")
+# for i in range(len(first_names)):
+#     print('Client(' + '"' + uuid.uuid4().hex + '"' + "," + '"' + first_names[i] + '"' + "," + '"' + last_names[i] + '"' + "),")
+# print("]")
