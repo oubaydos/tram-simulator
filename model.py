@@ -6,6 +6,12 @@ from enum import Enum
 from data import clients
 
 
+# should not be enum or str
+class Lines(str, Enum):
+    A = []  # list of stations of line A
+    # ..
+
+
 class Subscription(str, Enum):
     Month = "Month"
     Day = "Day"
