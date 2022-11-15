@@ -1,5 +1,5 @@
 import datetime
-from datetime import timedelta
+import random
 from random import randrange
 
 import names
@@ -18,10 +18,10 @@ def random_date(start, end):
     """
     if start == end:
         return start
-    delta = end - start
-    int_delta = (delta.days * 24 * 60 * 60) + delta.seconds
-    random_second = randrange(int_delta)
-    return start + timedelta(seconds=random_second)
+    now = int(datetime.datetime.now().timestamp())
+    l = [randrange(start=int(start.timestamp()), stop=now), randrange(start=now, stop=int(end.timestamp()))]
+    proba = [0.02, 0.98]
+    return datetime.datetime.fromtimestamp(random.choices(l, weights=proba)[0])
 
 
 def random_end_of_life_timestamp(subscription_type):
@@ -47,3 +47,5 @@ def generate_random_clients(number_of_clients: int) -> set:
         s.add(names.get_full_name())
     print(s)
     return s
+
+
