@@ -20,6 +20,9 @@ class Line:
     def __str__(self):
         return "line: " + self.id + "\n" + "stations: " + str(self.stations)
 
+    def random_station(self):
+        return random.choice(self.stations)
+
 
 class Lines:
     A = Line(
@@ -62,6 +65,11 @@ class Lines:
 
     def __init__(self):
         pass
+
+    @staticmethod
+    def random_line():
+        choices = [.3, .25, .25, .1, .1]
+        return random.choices(Lines.lines, weights=choices)[0]
 
 
 def get_common_stations():

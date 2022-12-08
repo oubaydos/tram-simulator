@@ -19,9 +19,7 @@ def random_date(start, end):
     if start == end:
         return start
     now = int(datetime.datetime.now().timestamp())
-    l = [randrange(start=int(start.timestamp()), stop=now), randrange(start=now, stop=int(end.timestamp()))]
-    proba = [0.02, 0.98]
-    return datetime.datetime.fromtimestamp(random.choices(l, weights=proba)[0])
+    return datetime.datetime.fromtimestamp(randrange(start=now, stop=int(end.timestamp())))
 
 
 def random_end_of_life_timestamp(subscription_type):
@@ -47,5 +45,3 @@ def generate_random_clients(number_of_clients: int) -> set:
         s.add(names.get_full_name())
     print(s)
     return s
-
-
