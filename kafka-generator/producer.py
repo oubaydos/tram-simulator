@@ -1,15 +1,15 @@
 from datetime import datetime
 from time import sleep
 
-from kafka import KafkaProducer
+from confluent_kafka import Producer
 
+from config import kafka_endpoint, kafka_topic
 from model import Validation, Client, Card, Lines
 
-producer = KafkaProducer(bootstrap_servers='localhost:9092')
-s = "hello"
+producer = Producer({'bootstrap.servers': kafka_endpoint})
 while True:
     line = Lines.random_line()
     validation = Validation(Client.random(), Card.random(), line.random_station(), line.id, line.random_station(),
                             datetime.now().isoformat())
-    producer.send('temp-topic', bytes(validation.to_json(), encoding='utf-8'))
+    producer.produce(kafka_topic, bytes(validation.to_json(), encoding='utf-8'))
     sleep(.1)
