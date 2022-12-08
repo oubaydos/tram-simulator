@@ -11,7 +11,7 @@ from model import Subscription
 def random_date(start, end):
     """
     should return a normal law distribution that peaks in now()
-    but instead returns a uniform distribution
+    but instead returns a valid date
     :param start: start date
     :param end: end date
     :return: random date between start and end
@@ -29,7 +29,7 @@ def random_end_of_life_timestamp(subscription_type):
     :param subscription_type: Subscription type: Monthly, Daily, OneTime (hourly)
     :return: a valid/invalid random end of life timestamp that could be in the past/present/future
     """
-    min_time = datetime.datetime.now() - relativedelta(years=6)
+    min_time = datetime.datetime.now()
     if subscription_type == Subscription.Month:
         max_time = datetime.datetime.now() + relativedelta(months=1)
     elif subscription_type == Subscription.Day:
