@@ -1,0 +1,4 @@
+confluent_kafka==1.9.2
+names==0.3.0
+python-dotenv==0.21.0
+python_dateutil==2.8.2
